@@ -21,8 +21,8 @@ public class ContextIdentifier{
     public void Initialize(ArrayList<String[]> data)
     {
         this.data = data;
-        ThreadCount = data.get(0).length;
-        NumRows = data.size();
+        NumRows = data.get(0).length;
+        ThreadCount = data.size();
         tbl.Data = new Column[ThreadCount];
         for (int i = 0; i < ThreadCount; i++) {
             tbl.Data[i] = new Column();
