@@ -18,16 +18,28 @@ public class ContextIdentifier{
     private Table tbl = new Table();
    
     
-    public void Initialize(ArrayList<String[]> data)
+    public void Initialize(ArrayList<String[]> data) throws InterruptedException
     {
         this.data = data;
         NumRows = data.get(0).length;
         ThreadCount = data.size();
         tbl.Data = new Column[ThreadCount];
+        ColumnContextThread[] threadArr = new ColumnContextThread[ThreadCount];
+       
+        System.out.println("All threads creted");
         for (int i = 0; i < ThreadCount; i++) {
             tbl.Data[i] = new Column();
-            ColumnContextThread thread = new ColumnContextThread(tbl.Data[i],data.get(i));
-            thread.run();
+            tbl.Data[i].ColumnId = i;
+            threadArr[i]= new ColumnContextThread(tbl.Data[i],data.get(i));
         }
+        for (int i = 0; i < ThreadCount; i++) {
+            threadArr[i].t.join();
+        }
+        System.out.println("Join finished");
+        System.out.println(tbl.Data[0].DataType);
+        System.out.println(tbl.Data[1].DataType);
+        System.out.println(tbl.Data[2].DataType);
+      
+        
     }
 }

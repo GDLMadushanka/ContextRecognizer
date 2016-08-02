@@ -24,9 +24,9 @@ public class API {
         ContextIdentifier con = new ContextIdentifier();
         
         reader.filePath = path;
-        ArrayList<String[]> temp = reader.readCSV();
+        ArrayList<String[]> temp = reader.GetCSVData();
         con.Initialize(temp);
-        //
+        
     }
     
 }

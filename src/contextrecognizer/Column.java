@@ -11,10 +11,8 @@ package contextrecognizer;
  */
 public class Column {
     public int ColumnId;
-    public int NoOfDifferentValues;
-    public boolean IsString;
-    public boolean IsInteger;
-    public boolean IsFloat;
+    public boolean IsCategorical;
+    public int DataType;
     public boolean IsId; //unique
     public int DistributionOfData;
     public int ContextOfData;

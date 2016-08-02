@@ -20,8 +20,9 @@ public class FileReaderCSV {
   
     public String filePath;
     ArrayList<String[]> data = new ArrayList();
+    ArrayList<String[]> ProcessedData = new ArrayList();
     
-    public ArrayList<String[]> readCSV() 
+    public void readCSV() 
     {
         if(!filePath.isEmpty())
         {
@@ -36,11 +37,27 @@ public class FileReaderCSV {
                         String[] temp = line.split(cvsSplitBy);
                         data.add(temp);
                     }
-                    return data;
                 } 
-            catch (Exception e) {return null;}
+            catch (Exception e) {}
         }
-        else return null;
+    }
+    
+    public ArrayList<String[]> GetCSVData()
+    {
+        readCSV();
+        int NumCols = data.get(0).length;
+        int NumRows = data.size();
+        
+        for (int i = 0; i < NumCols; i++) {
+            String[] t = new String[NumRows];
+            for (int j = 0; j < NumRows; j++) {
+                    t[j] = data.get(j)[i];
+                
+            }
+            ProcessedData.add(t);
+        }
+        
+        return ProcessedData;
     }
 }
 
